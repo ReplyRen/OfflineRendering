@@ -3,15 +3,36 @@
 #include"Color.h"
 #include"Vector3.h"
 #include "Ray.h"
+#include <math.h>
 
 using namespace std;
 
+float HitSphere(const Point3& center, float radius, const Ray& r)
+{
+	Vector3 oc = r.Origin() - center;
+	auto a = r.Direction().LengthSquared();
+	auto halfB = Dot(oc, r.Direction());
+	auto c = oc.LengthSquared() - radius * radius;
+	auto discriminant = halfB * halfB - a * c;
+	if (discriminant < 0)
+		return -1.0f;
+	else
+		return(-halfB - sqrt(discriminant)) / a;
+}
+
 Color RayColor(const Ray& r)
 {
+	auto t = HitSphere(Point3(0, 0, -1), 0.5, r);
+	if (t > 0.0f) {
+		Vector3 N = Unit(r.At(t)-Vector3(0, 0, -1));
+		return 0.5f * Color(N.X() + 1, N.Y() + 1, N.Z() + 1);
+	}
 	Vector3 unitDirection = Unit(r.Direction());
-	auto t = 0.5f * (unitDirection.Y() + 1.0f);
+	t = 0.5f * (unitDirection.Y() + 1.0f);
 	return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
 }
+
+
 
 int main()
 {
