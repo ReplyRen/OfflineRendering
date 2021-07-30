@@ -8,6 +8,13 @@ struct HitRecord
 	Point3 p;
 	Vector3 normal;
 	double t;
+	bool frontFace;
+
+	inline void SetFaceNormal(const Ray& r, const Vector3& outwardNormal)
+	{
+		frontFace = Dot(r.Direction(), outwardNormal) < 0;
+		normal = frontFace ? outwardNormal : -outwardNormal;
+	}
 };
 
 class Hittable

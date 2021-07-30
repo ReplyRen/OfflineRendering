@@ -10,14 +10,14 @@ public:
 	Sphere(){}
 	Sphere(Point3 cen, float r) :center(cen), radius(r) {};
 
-	virtual bool hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const override;
+	virtual bool Hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const override;
 	
 public:
 	Point3 center;
 	float radius;
 };
 
-bool Sphere::hit(const Ray& r, float tMin, float tMax, HitRecord& rec)
+bool Sphere::Hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const
 {
 	Vector3 oc = r.Origin() - center;
 	auto a = r.Direction().LengthSquared();
@@ -37,7 +37,8 @@ bool Sphere::hit(const Ray& r, float tMin, float tMax, HitRecord& rec)
 
 	rec.t = root;
 	rec.p = r.At(rec.t);
-	rec.normal = (rec.p - center) / radius;
+	Vector3 outwardNormal = (rec.p - center) / radius;
+	rec.SetFaceNormal(r, outwardNormal);
 
 	return true;
 }

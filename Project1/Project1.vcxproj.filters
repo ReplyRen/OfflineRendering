@@ -38,5 +38,8 @@
     <ClInclude Include="Sphere.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="HittableList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
