@@ -19,7 +19,7 @@ public:
 	}
 	void Clear()
 	{
-		objects.Clear();
+		objects.clear();
 	}
 	void Add(shared_ptr<Hittable> object)
 	{
