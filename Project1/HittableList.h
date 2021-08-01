@@ -12,7 +12,7 @@ using std::make_shared;
 class HittableList :public Hittable
 {
 public:
-	HittableList(){}
+	HittableList() {}
 	HittableList(shared_ptr<Hittable> object)
 	{
 		Add(object);
@@ -38,7 +38,7 @@ bool HittableList::Hit(const Ray& r, float tMin, float tMax, HitRecord& rec)cons
 	bool hitAnything = false;
 	auto closestSoFar = tMax;
 
-	for (const auto&object : objects)
+	for (const auto& object : objects)
 	{
 		if (object->Hit(r, tMin, closestSoFar, tempRec)) {
 			hitAnything = true;
