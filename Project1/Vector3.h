@@ -66,6 +66,16 @@ public:
 		return e[0] * e[0] + e[1] * e[1] + e[2] * e[2];
 	}
 
+	inline static Vector3 RandomVec3()
+	{
+		return Vector3(Random(), Random(), Random());
+	}
+
+	inline static Vector3 RandomVec3(float min, float max)
+	{
+		return Vector3(Random(min, max), Random(min, max), Random(min, max));
+	}
+
 };
 
 inline std::ostream& operator <<(std::ostream& out, const Vector3& v)
@@ -118,6 +128,21 @@ inline Vector3 Unit(Vector3 v)
 {
 	return v / v.Length();
 }
+
+Vector3 RandomInUnitSphere()
+{
+	while (true) {
+		auto p = Vector3::RandomVec3(-1, 1);
+		if (p.LengthSquared() >= 1)
+			continue;
+		return p;
+	}
+}
+Vector3 RandomUnitVector()
+{
+	return Unit(RandomInUnitSphere());
+}
+
 
 using Point3 = Vector3;
 using Color = Vector3;

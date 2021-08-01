@@ -11,11 +11,17 @@
 
 using namespace std;
 
-Color RayColor(const Ray& r, const Hittable& world)
+Color RayColor(const Ray& r, const Hittable& world, int depth)
 {
 	HitRecord rec;
-	if (world.Hit(r, 0, infinity, rec)) {
-		return 0.5f * (rec.normal + Color(1, 1, 1));
+
+	if (depth <= 0) {
+		return Color(0, 0, 0);
+	}
+
+	if (world.Hit(r, 0.001, infinity, rec)) {
+		Point3 target = rec.p + rec.normal + RandomUnitVector();
+		return 0.5f * RayColor(Ray(rec.p, target - rec.p), world, depth - 1);
 	}
 	Vector3 unitDirection = Unit(r.Direction());
 	auto t = 0.5f * (unitDirection.Y() + 1.0f);
@@ -32,7 +38,8 @@ int main()
 	const auto aspectRatio = 16.0 / 9.0;
 	const int imageWidth = 400;
 	const int imageHeight = static_cast<int>(imageWidth / aspectRatio);
-	const int samplePrePiexl = 100;
+	const int samplePrePiexl = 10;
+	const int maxDepth = 50;
 
 	//world
 
@@ -56,7 +63,7 @@ int main()
 				auto u = (i + Random()) / (imageWidth - 1);
 				auto v = (j + Random()) / (imageHeight - 1);
 				Ray r = cam.GetRay(u, v);
-				pixelColor += RayColor(r, world);
+				pixelColor += RayColor(r, world, maxDepth);
 			}
 			WriteColor(outImage, pixelColor, samplePrePiexl);
 		}

@@ -2,8 +2,9 @@
 C:\Users\renpengyu\source\repos\OfflineRendering\Project1\RTWeekend.h(14,39): warning C4305: “初始化”: 从“double”到“float”截断
 C:\Users\renpengyu\source\repos\OfflineRendering\Project1\Camera.h(23,40): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
 C:\Users\renpengyu\source\repos\OfflineRendering\Project1\Camera.h(23,57): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-C:\Users\renpengyu\source\repos\OfflineRendering\Project1\源.cpp(22,14): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-C:\Users\renpengyu\source\repos\OfflineRendering\Project1\源.cpp(22,68): warning C4305: “参数”: 从“double”到“float”截断
+C:\Users\renpengyu\source\repos\OfflineRendering\Project1\源.cpp(22,5): warning C4305: “参数”: 从“double”到“float”截断
+C:\Users\renpengyu\source\repos\OfflineRendering\Project1\源.cpp(28,14): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+C:\Users\renpengyu\source\repos\OfflineRendering\Project1\源.cpp(28,68): warning C4305: “参数”: 从“double”到“float”截断
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\xutility(138,73): warning C4244: “参数”: 从“_Ty”转换到“float”，可能丢失数据
           with
           [
@@ -24,5 +25,5 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
           [
               _Ty=Sphere
           ]
-C:\Users\renpengyu\source\repos\OfflineRendering\Project1\源.cpp(41): message : 查看对正在编译的函数 模板 实例化“std::shared_ptr<Sphere> std::make_shared<Sphere,Point3,int>(Point3 &&,int &&)”的引用
+C:\Users\renpengyu\source\repos\OfflineRendering\Project1\源.cpp(48): message : 查看对正在编译的函数 模板 实例化“std::shared_ptr<Sphere> std::make_shared<Sphere,Point3,int>(Point3 &&,int &&)”的引用
   Project1.vcxproj -> C:\Users\renpengyu\source\repos\OfflineRendering\Debug\Project1.exe
