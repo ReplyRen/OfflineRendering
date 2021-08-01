@@ -2,11 +2,15 @@
 #define HITTABLE_H
 
 #include "Ray.h"
+#include "RTWeekend.h"
+
+class Material;
 
 struct HitRecord
 {
 	Point3 p;
 	Vector3 normal;
+	shared_ptr<Material> matPtr;
 	float t;
 	bool frontFace;
 

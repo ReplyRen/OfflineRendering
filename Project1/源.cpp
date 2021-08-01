@@ -21,7 +21,7 @@ Color RayColor(const Ray& r, const Hittable& world, int depth)
 
 	if (world.Hit(r, 0.001, infinity, rec)) {
 		Point3 target = rec.p + rec.normal + RandomUnitVector();
-		return 0.5f * RayColor(Ray(rec.p, target - rec.p), world, depth - 1);
+		return 0.5 * RayColor(Ray(rec.p, target - rec.p), world, depth - 1);
 	}
 	Vector3 unitDirection = Unit(r.Direction());
 	auto t = 0.5f * (unitDirection.Y() + 1.0f);

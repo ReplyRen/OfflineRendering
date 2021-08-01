@@ -75,6 +75,11 @@ public:
 	{
 		return Vector3(Random(min, max), Random(min, max), Random(min, max));
 	}
+	bool NearZero() const
+	{
+		const auto s = 1e-8f;
+		return(fabs(e[0]) < s) && (fabs(e[1]) < s) && (fabs(e[2]) < s);
+	}
 
 };
 
