@@ -14,7 +14,7 @@ public:
 class Lambertian :public Material
 {
 public:
-	Lambertian(const Color& a):albedo(a){}
+	Lambertian(const Color& a) :albedo(a) {}
 	virtual bool scatter(const Ray& rIn, const HitRecord& rec, Color& attenuation, Ray& scattered) const override
 	{
 		auto scatterDirection = rec.normal + RandomUnitVector();
@@ -30,5 +30,23 @@ public:
 public:
 	Color albedo;
 };
+
+class Metal :public Material
+{
+public:
+	Metal(const Color& a,float f) :albedo(a),fuzz(f<1?f:1) {}
+
+	virtual bool scatter(const Ray& rIn, const HitRecord& rec, Color& attenuation, Ray& scattered)const override
+	{
+		Vector3 reflected = Reflect(rIn.Direction(), rec.normal);
+		scattered = Ray(rec.p, reflected+fuzz*RandomInUnitSphere());
+		attenuation = albedo;
+		return (Dot(scattered.Direction(), rec.normal) > 0);
+	}
+public:
+	Color albedo;
+	float fuzz;
+};
+
 #endif
 #pragma once

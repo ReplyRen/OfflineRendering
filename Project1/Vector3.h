@@ -143,9 +143,15 @@ Vector3 RandomInUnitSphere()
 		return p;
 	}
 }
+
 Vector3 RandomUnitVector()
 {
 	return Unit(RandomInUnitSphere());
+}
+
+Vector3 Reflect(const Vector3& v, const Vector3& n)
+{
+	return v - 2 * Dot(v, n) * n;
 }
 
 
